@@ -60,6 +60,19 @@ module ``about the stock example`` =
 
     [<Koan>]
     let YouGotTheAnswerCorrect() =
-        let result =  __
+        let splitCommas (x:string) =
+            x.Split([|','|])
+
+        let sortPredicate (aa : string[]) =
+            let openValue = System.Double.Parse(aa.[1])
+            let closeValue = System.Double.Parse(aa.[4])
+
+            -1.0 * System.Math.Abs(openValue - closeValue)
+
+        let result = 
+            Seq.skip 1 stockData
+            |> Seq.toList
+            |> List.map splitCommas
+            |> List.sortBy sortPredicate
         
-        AssertEquality "2012-03-13" result
+        AssertEquality "2012-03-13" result.[0].[0]
