@@ -74,5 +74,7 @@ module ``about the stock example`` =
             |> Seq.toList
             |> List.map splitCommas
             |> List.sortBy sortPredicate
+            |> List.nth <| 0
+            |> Seq.nth 0
         
-        AssertEquality "2012-03-13" result.[0].[0]
+        AssertEquality "2012-03-13" result
