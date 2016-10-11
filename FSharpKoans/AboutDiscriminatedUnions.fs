@@ -33,10 +33,12 @@ module ``about discriminated unions`` =
 
         let choice = Mustard
 
-        AssertEquality (toColor choice) __
+        AssertEquality (toColor choice) "yellow"
 
         (* TRY IT: What happens if you remove a case from the above pattern 
                    match? *)
+         //A : all cases must be in the patters or the global catch all must be present 
+         //| _ -> "???"
 
     [<Koan>]
     let DiscriminatedUnionCasesCanHaveTypes() =
@@ -49,7 +51,10 @@ module ``about discriminated unions`` =
             | Number _ -> "I'm partial to 7"
 
         let bourbonResult = saySomethingAboutYourFavorite <| Bourbon "Maker's Mark"
+        //alternative syntax for the above line
+        let bourbonResult2 = saySomethingAboutYourFavorite (Bourbon "Maker's Mark")
         let numberResult = saySomethingAboutYourFavorite <| Number 7
         
-        AssertEquality bourbonResult __
-        AssertEquality numberResult __
+        AssertEquality bourbonResult "I prefer Bookers to Maker's Mark"
+        AssertEquality bourbonResult2 "I prefer Bookers to Maker's Mark"
+        AssertEquality numberResult "me too!"
